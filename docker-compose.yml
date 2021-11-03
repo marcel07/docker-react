@@ -6,3 +6,11 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "4200:4200"
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - node_modules
+      - .:/src
+    command: ["npm", "run", "test"]
