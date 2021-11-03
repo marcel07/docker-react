@@ -1,11 +1,15 @@
-FROM node:alpine
+# Stage 1: Compile and Build angular codebase
 
-WORKDIR '/app'
+# Use official node image as the base image
+FROM node:latest as build
 
-COPY package.json .
+# Set the working directory
+WORKDIR /usr/local/app
 
-RUN npm i
+# Add the source code to app
+COPY ./ /usr/local/app/
 
-COPY . .
+# Install all the dependencies
+RUN npm install
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
